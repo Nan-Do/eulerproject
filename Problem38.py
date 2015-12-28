@@ -1,15 +1,14 @@
 from itertools import count
 
 max_value = 0
-for x in count(start=2):
-    if len(str(x)) > 9: break
+for x in xrange(2, 10000):
     for y in count(start=2):
-        num = ''.join(map(str, map(lambda z: z*x, xrange(2, y))))
-        if len(num) == 9:
+        num = ''.join(map(str, map(lambda z: z*x, xrange(1, y))))
+        if len(num) == 9 and len(set(num)) == 9 and '0' not in num:
             n = int(num)
-            if len(set(num)) == 9\
-                    and n > max_value:
-                print n
+            if n > max_value:
                 max_value = n
+                print x, n
         if len(num) > 9:
             break
+print max_value
